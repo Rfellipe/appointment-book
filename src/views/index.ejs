@@ -1,0 +1,36 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Appointment Book</h1>
+      <p class="text-center lead">Contacts</p>
+
+      <%- include('includes/messages') %>
+
+      <% if(contacts.length > 0) { %>
+      <div class="responsive-table">
+        <table class="table my-3">
+          <% contacts.forEach(contact => { %>
+            <tr>
+              <td><%= contact.name %></td>
+              <td><%= contact.surname %></td>
+              <td><%= contact.tel %></td>
+              <td><%= contact.email %></td>
+              <td><a href="/contacts/<%= contact._id %>">Edit</a></td>
+              <td><a class="text-danger" href="/contacts/delete/<%= contact._id %>">Delete</a></td>
+            </tr>
+          <% }); %>
+        </table>
+      </div>
+      <% } else { %>
+        <p class="text-center lead">You don't have any contacts registered</p>
+      <% } %>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>
